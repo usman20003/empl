@@ -1,5 +1,6 @@
 package com.example.emp.controller;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -65,14 +66,26 @@ public class Controllerclass {
 		obj2.setEmail("fareedmbbs@gmail.com");
 		obj2.setId(2240L);
 		obj2.setPhoneNumber("99999999");
+		obj2.setSalary(45676);
 		employee.add(obj2);
 
-		List<Employee> filteredEmployees = employee.stream()
-				.filter(emp -> emp.getFullName()
-				.equalsIgnoreCase("fareed"))
-				.collect(Collectors.toList());
-
-		return filteredEmployees;
+		/*
+		 * List<Employee> filteredEmployees = employee.stream() .filter(emp ->
+		 * emp.getFullName() .equalsIgnoreCase("fareed")) .collect(Collectors.toList());
+		 */
+		
+		List<Employee> obj=new ArrayList<Employee>();
+		obj.addAll(employee);
+		for(Employee i:employee)
+		{
+			if(i.getSalary()>10000)
+			{
+				obj.remove(i);
+			}
+			
+		}
+		
+		return obj;
 
 	}
 
