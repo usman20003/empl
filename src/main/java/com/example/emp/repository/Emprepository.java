@@ -6,4 +6,5 @@ import com.example.emp.entity.Empdetails;
 
 public interface Emprepository extends CrudRepository<Empdetails, Long>{
 
+	
 }
