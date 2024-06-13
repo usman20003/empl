@@ -17,7 +17,8 @@ public class CSVService {
         CSVWriter csvWriter = new CSVWriter(writer);
 
         // Write header
-        csvWriter.writeNext(new String[]{"ID", "Email", "EmpName"});
+        String[] str= new String[]{"ID", "Email", "EmpName"};
+        csvWriter.writeNext(str);
 
         // Write data
         for (Empdetails employee : employees) {

@@ -3,6 +3,8 @@ package com.example.emp.controller;
 
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
@@ -31,10 +33,37 @@ public class EmployeeController {
 	@Autowired
     private CSVService csvService;
 	
-	
+	 private static final Logger logger = LoggerFactory.getLogger(EmployeeController.class);
+	 @GetMapping("/test/csv")
+	    public void test() {
+		 try
+		 {
+			 int x=1/0;
+		 }
+			/*
+			 * catch (Exception e) { e.printStackTrace();
+			 * logger.error("Exception occured due to the :"+e.getCause()); }
+			 */
+		 
+		 
+		 catch (NullPointerException e) {
+			 e.printStackTrace();
+			logger.error("Exception arithoccured due to the :"+e.getCause());
+		}
+		 catch (Exception e) {
+			 e.printStackTrace();
+			logger.error("Exception null occured due to the :"+e.getCause());
+		}
+		 finally {
+			System.out.println("alwys execute");
+		}
+		 
+	 
+	 }
 	@GetMapping("/download/csv")
     public ResponseEntity<String> downloadCSV() {
         List<Empdetails> employees =employeerepository.findAll();
+        logger.info("Employee Data Size :"+employees.size());
         String csvContent = csvService.convertToCSV(employees);
 
         HttpHeaders headers = new HttpHeaders();
